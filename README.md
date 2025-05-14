@@ -11,7 +11,7 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
 
 - Real-time multiplayer gameplay (WebSockets)
 - Matchmaking system using Redis queues
-- Game rooms with in-memory state using Redis
+- Game rooms with in-memory state
 - End-to-end type safety via Eden Treaty
 - Leaderboards and match history via PostgreSQL
 - Authentication & persistent user data
@@ -26,7 +26,6 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
 - [Eden Treaty](https://elysiajs.com/plugins/eden) (for typed API access)
 - [Bun](https://bun.sh/) (JavaScript runtime)
 - [Elysia.js](https://elysiajs.com/) (Fast, typed web framework)
-- [Redis](https://redis.io/) (Pub/Sub & in-memory game state)
 - [PostgreSQL](https://www.postgresql.org/) (User data & persistence)
 
 ## Project Checklist
@@ -38,7 +37,6 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
 
 - [ ] **Milestone 2: Core API Setup & Type Safety**
   - [ ] Implement Backend API (Game Logic Routes)
-  - [ ] Integrate Redis for Real-Time Game State
   - [ ] Set Up Eden Treaty for Type Safety
   - [ ] Expose Typed API from Backend
 
@@ -46,7 +44,6 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
   - [ ] Define Game Mechanics (Turn-based, Draw, Discard)
   - [ ] Handle Winner Detection and Cleanup
   - [ ] Create Global Pinia Stores for State
-  - [ ] Synchronize State Between Redis and Pinia
 
 - [ ] **Milestone 4: Real-Time Communication**
   - [ ] Set Up WebSocket Communication in Backend
@@ -57,12 +54,12 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
   - [ ] Persist Match Results & Player Stats
 
 - [ ] **Milestone 6: Matchmaking and Game Flow**
-  - [ ] Use Redis Queue for Player Matching
+  - [ ] Set Up Matchmaking and Queueing
   - [ ] Create Matchmaking UI with Join Queue
   - [ ] Implement Auto-Navigation to Game Room
   - [ ] Handle Player Actions in UI (Draw, Play)
 
 - [ ] **Milestone 7: Deployment**
-  - [ ] Deploy Backend on Fly.io or Railway
-  - [ ] Deploy Frontend on Vercel or Netlify
+  - [ ] Deploy Backend
+  - [ ] Deploy Frontend
   - [ ] Implement CI/CD for Monorepo
