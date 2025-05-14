@@ -31,68 +31,46 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
 
 ## ✅ Project Workflow
 
-### Milestone 1: Project Setup
-#### Backend Initialization
-- [ ] Initialize Bun project and install dependencies
-- [ ] Set up Elysia routes and folder structure
+- [ ] **Milestone 1: Project Setup**
+  - [ ] Initialize Bun project and install dependencies
+  - [ ] Set up Elysia routes and folder structure
+  - [ ] Set up Vue project with Tailwind and Pinia
+  - [ ] Create base folder structure
 
-#### Frontend Initialization
-- [ ] Set up Vue project with Tailwind and Pinia
-- [ ] Create base folder structure
+- [ ] **Milestone 2: Core API & Type Safety**
+  - [ ] Define `/rooms`, `/players`, `/matchmaking` routes
+  - [ ] Integrate Redis and WebSocket plugin
+  - [ ] Export backend route types
+  - [ ] Initialize typed client in frontend
 
-### Milestone 2: Core API & Type Safety
-#### Setup Elysia Routes
-- [ ] Define `/rooms`, `/players`, `/matchmaking` routes
-- [ ] Integrate Redis and WebSocket plugin
+- [ ] **Milestone 3: Game State Management**
+  - [ ] Store session in `game:room:<id>`
+  - [ ] Set TTL for inactive games
+  - [ ] Create stores for game, player, and UI state
+  - [ ] Sync via WebSocket updates
 
-#### Add Eden Treaty Integration
-- [ ] Export backend route types
-- [ ] Initialize typed client in frontend
+- [ ] **Milestone 4: Real-Time Communication**
+  - [ ] Events: `playerJoin`, `move`, `gameOver`
+  - [ ] Redis Pub/Sub for room-wide broadcast
+  - [ ] Composable for managing socket events
+  - [ ] Push events to Pinia
 
-### Milestone 3: Game State Management
-#### Redis Game State Store
-- [ ] Store session in `game:room:<id>`
-- [ ] Set TTL for inactive games
+- [ ] **Milestone 5: Game Logic**
+  - [ ] Implement draw, turn-switch, win/lose logic
+  - [ ] Validate and sync moves
+  - [ ] Animate card draws, turns, player actions
 
-#### Pinia State Management
-- [ ] Create stores for game, player, and UI state
-- [ ] Sync via WebSocket updates
+- [ ] **Milestone 6: Persistence Layer**
+  - [ ] Tables for users, games, leaderboards
+  - [ ] Save match history post-game
 
-### Milestone 4: Real-Time Communication
-#### WebSocket Backend
-- [ ] Events: `playerJoin`, `move`, `gameOver`
-- [ ] Redis Pub/Sub for room-wide broadcast
+- [ ] **Milestone 7: Matchmaking**
+  - [ ] Use LPUSH/RPOP to match players
+  - [ ] Auto-assign rooms
+  - [ ] Show lobby and queue indicators
 
-#### WebSocket Frontend
-- [ ] Composable for managing socket events
-- [ ] Push events to Pinia
-
-### Milestone 5: Game Logic
-#### Core Mechanics
-- [ ] Implement draw, turn-switch, win/lose logic
-- [ ] Validate and sync moves
-
-#### UI Updates
-- [ ] Animate card draws, turns, player actions
-
-### Milestone 6: Persistence Layer
-#### PostgreSQL Integration
-- [ ] Tables for users, games, leaderboards
-- [ ] Save match history post-game
-
-### Milestone 7: Matchmaking
-#### Redis Queue
-- [ ] Use LPUSH/RPOP to match players
-- [ ] Auto-assign rooms
-
-#### UI Matchmaking
-- [ ] Show lobby and queue indicators
-
-### Milestone 8: Deployment
-#### Backend
-- [ ] Deploy Bun app (e.g., Fly.io, Railway)
-- [ ] Connect Redis and PG providers
-
-#### Frontend
-- [ ] Deploy via Vercel/Netlify
-- [ ] GitHub Actions for CI/CD
+- [ ] **Milestone 8: Deployment**
+  - [ ] Deploy Bun app (e.g., Fly.io, Railway)
+  - [ ] Connect Redis and PG providers
+  - [ ] Deploy via Vercel/Netlify
+  - [ ] GitHub Actions for CI/CD
