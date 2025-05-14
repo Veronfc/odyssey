@@ -1,0 +1,17 @@
+{
+	"tabWidth": 4,
+	"semi": true,
+	"singleQuote": false,
+	"bracketSpacing": true,
+	"objectWrap": "preserve",
+	"arrowParens": "always",
+	"htmlWhitespaceSensitivity": "css",
+	"embeddedLanguageFormatting": "auto",
+	"singleAttributePerLine": true,
+	"bracketSameLine": true,
+	"quoteProps": "consistent",
+	"trailingComma": "none",
+	"useTabs": true,
+	"vueIndentScriptAndStyle": true,
+	"plugins": ["prettier-plugin-tailwindcss"]
+}
