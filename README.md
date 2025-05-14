@@ -29,48 +29,40 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
 - [Redis](https://redis.io/) (Pub/Sub & in-memory game state)
 - [PostgreSQL](https://www.postgresql.org/) (User data & persistence)
 
-## ✅ Project Workflow
+## Project Checklist
 
-- [ ] **Milestone 1: Project Setup**
-  - [ ] Initialize Bun project and install dependencies
-  - [ ] Set up Elysia routes and folder structure
-  - [ ] Set up Vue project with Tailwind and Pinia
-  - [ ] Create base folder structure
+- [ ] **Milestone 1: Initial Setup & Project Structure**
+  - [ ] Create Root Directory and Bun Workspace
+  - [ ] Initialize Backend (Engine)
+  - [ ] Initialize Frontend (Arena)
 
-- [ ] **Milestone 2: Core API & Type Safety**
-  - [ ] Define `/rooms`, `/players`, `/matchmaking` routes
-  - [ ] Integrate Redis and WebSocket plugin
-  - [ ] Export backend route types
-  - [ ] Initialize typed client in frontend
+- [ ] **Milestone 2: Core API Setup & Type Safety**
+  - [ ] Implement Backend API (Game Logic Routes)
+  - [ ] Integrate Redis for Real-Time Game State
+  - [ ] Set Up Eden Treaty for Type Safety
+  - [ ] Expose Typed API from Backend
 
-- [ ] **Milestone 3: Game State Management**
-  - [ ] Store session in `game:room:<id>`
-  - [ ] Set TTL for inactive games
-  - [ ] Create stores for game, player, and UI state
-  - [ ] Sync via WebSocket updates
+- [ ] **Milestone 3: Game Logic and State Management**
+  - [ ] Define Game Mechanics (Turn-based, Draw, Discard)
+  - [ ] Handle Winner Detection and Cleanup
+  - [ ] Create Global Pinia Stores for State
+  - [ ] Synchronize State Between Redis and Pinia
 
 - [ ] **Milestone 4: Real-Time Communication**
-  - [ ] Events: `playerJoin`, `move`, `gameOver`
-  - [ ] Redis Pub/Sub for room-wide broadcast
-  - [ ] Composable for managing socket events
-  - [ ] Push events to Pinia
+  - [ ] Set Up WebSocket Communication in Backend
+  - [ ] Set Up WebSocket Communication in Frontend
 
-- [ ] **Milestone 5: Game Logic**
-  - [ ] Implement draw, turn-switch, win/lose logic
-  - [ ] Validate and sync moves
-  - [ ] Animate card draws, turns, player actions
+- [ ] **Milestone 5: Persistence and Database Setup**
+  - [ ] Define Database Models (Users, Games, Leaderboards)
+  - [ ] Persist Match Results & Player Stats
 
-- [ ] **Milestone 6: Persistence Layer**
-  - [ ] Tables for users, games, leaderboards
-  - [ ] Save match history post-game
+- [ ] **Milestone 6: Matchmaking and Game Flow**
+  - [ ] Use Redis Queue for Player Matching
+  - [ ] Create Matchmaking UI with Join Queue
+  - [ ] Implement Auto-Navigation to Game Room
+  - [ ] Handle Player Actions in UI (Draw, Play)
 
-- [ ] **Milestone 7: Matchmaking**
-  - [ ] Use LPUSH/RPOP to match players
-  - [ ] Auto-assign rooms
-  - [ ] Show lobby and queue indicators
-
-- [ ] **Milestone 8: Deployment**
-  - [ ] Deploy Bun app (e.g., Fly.io, Railway)
-  - [ ] Connect Redis and PG providers
-  - [ ] Deploy via Vercel/Netlify
-  - [ ] GitHub Actions for CI/CD
+- [ ] **Milestone 7: Deployment**
+  - [ ] Deploy Backend on Fly.io or Railway
+  - [ ] Deploy Frontend on Vercel or Netlify
+  - [ ] Implement CI/CD for Monorepo
