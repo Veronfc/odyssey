@@ -30,36 +30,30 @@ Odyssey is a turn-based card game where multiple players can compete in real tim
 
 ## Project Checklist
 
-- [x] **Milestone 1: Initial Setup & Project Structure**
-  - [x] Create Root Directory and Bun monorepo workspaces
-  - [x] Initialize client
-  - [x] Initialize server
+- [x] **Milestone 1: Project Initialization**
+  - [x] Monorepo Setup
+  - [x] Development Environment
 
-- [ ] **Milestone 2: Core API Setup & Type Safety**
-  - [ ] Implement Backend API (Game Logic Routes)
-  - [ ] Set Up Eden Treaty for Type Safety
-  - [ ] Expose Typed API from Backend
+- [ ] **Milestone 2: Guest Access & Token Auth**
+  - [ ] Guest Token System
+  - [ ] Client Guest Flow
 
-- [ ] **Milestone 3: Game Logic and State Management**
-  - [ ] Define Game Mechanics (Turn-based, Draw, Discard)
-  - [ ] Handle Winner Detection and Cleanup
-  - [ ] Create Global Pinia Stores for State
+- [ ] **Milestone 3: Lobby System**
+  - [ ] Lobby Creation
+  - [ ] Lobby Interaction
+  - [ ] Lobby Sync
 
-- [ ] **Milestone 4: Real-Time Communication**
-  - [ ] Set Up WebSocket Communication in Backend
-  - [ ] Set Up WebSocket Communication in Frontend
+- [ ] **Milestone 4: Match System**
+  - [ ] Match Lifecycle
+  - [ ] Real-time Game Updates
 
-- [ ] **Milestone 5: Persistence and Database Setup**
-  - [ ] Define Database Models (Users, Games, Leaderboards)
-  - [ ] Persist Match Results & Player Stats
+- [ ] **Milestone 5: Basic UI Implementation**
+  - [ ] Navigation & Layout
+  - [ ] Game UI
 
-- [ ] **Milestone 6: Matchmaking and Game Flow**
-  - [ ] Set Up Matchmaking and Queueing
-  - [ ] Create Matchmaking UI with Join Queue
-  - [ ] Implement Auto-Navigation to Game Room
-  - [ ] Handle Player Actions in UI (Draw, Play)
+- [ ] **Milestone 6: Persistance Layer**
+  - [ ] Account & Persistance Setup
 
-- [ ] **Milestone 7: Deployment**
-  - [ ] Deploy Backend
-  - [ ] Deploy Frontend
-  - [ ] Implement CI/CD for Monorepo
+- [ ] **Milestone 7: Final Touches**
+  - [ ] UI Polishing
+  - [ ] Reconnection Logic

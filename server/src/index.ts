@@ -18,3 +18,5 @@ const app = new Elysia()
 console.log(
 	`View documentation at "${app.server!.url}swagger" in your browser`
 );
+
+export type App = typeof app
