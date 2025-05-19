@@ -1,6 +1,17 @@
 import { Elysia, t, status } from "elysia";
+import { authJwt } from "../plugins/auth.plugin";
 
 const lobby = new Elysia({ prefix: "/lobby" })
+  .use(authJwt)
+  .onBeforeHandle(async({jwt, cookie: {auth}}) => {
+    const token = await jwt.verify(auth?.value)
+
+    if (!token) {
+      return status(401, 'Unauthorized')
+    } 
+
+    console.info(token.username)
+  })
 	.post("/create", "Create a lobby")
 	.post("/:id/join", "Join a lobby")
 	.post("/:id/leave", "Leave a lobby")

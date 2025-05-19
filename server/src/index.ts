@@ -1,8 +1,8 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 import { swagger } from "@elysiajs/swagger";
-import { player } from "./routes/playerRoute";
-import { lobby } from "./routes/lobbyRoute";
-import { match } from "./routes/matchRoute";
+import { player } from "./routes/player.route";
+import { lobby } from "./routes/lobby.route";
+import { match } from "./routes/match.route";
 
 const app = new Elysia()
 	.use(
@@ -13,10 +13,6 @@ const app = new Elysia()
 	.use(player)
 	.use(lobby)
 	.use(match)
-	.listen(8080);
+	.listen(8080, () => {console.info(`Server started at http://localhost:8080 \nSwagger UI at http://localhost:8080/swagger`)});
 
-console.log(
-	`View documentation at "${app.server!.url}swagger" in your browser`
-);
-
-export type App = typeof app
+  export type App = typeof app
