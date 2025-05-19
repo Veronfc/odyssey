@@ -1,16 +1,29 @@
 import { Elysia, t, status } from "elysia";
-import { authJwt } from "../plugins/auth.plugin";
+import { guestJwt, memberJwt } from "../plugins/auth.plugin";
 
 const lobby = new Elysia({ prefix: "/lobby" })
-  .use(authJwt)
-  .onBeforeHandle(async({jwt, cookie: {auth}}) => {
-    const token = await jwt.verify(auth?.value)
+  .use(guestJwt)
+  .use(memberJwt)
+  .onBeforeHandle(async({guestJwt, memberJwt, cookie: {guestAuth, memberAuth}}) => {
+    if (guestAuth) {
+      const guestToken = await guestJwt.verify(guestAuth.value)
 
-    if (!token) {
-      return status(401, 'Unauthorized')
-    } 
+      if (!guestToken) {
+        return status(401, 'Unauthorized')
+      }
 
-    console.info(token.username)
+      //replace guest token
+      const newGuestToken = await guestJwt.sign({username: guestToken.username as string})
+      
+      guestAuth.set({
+        value: newGuestToken,
+        httpOnly: true,
+        path: '/'
+      })
+    }
+    
+    // if (memberAuth) {
+    // }
   })
 	.post("/create", "Create a lobby")
 	.post("/:id/join", "Join a lobby")

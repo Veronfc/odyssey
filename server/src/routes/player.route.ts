@@ -1,14 +1,15 @@
 import { Elysia, status, t } from "elysia";
-import { authJwt } from "../plugins/auth.plugin";
+import { guestJwt, memberJwt } from "../plugins/auth.plugin";
 import {faker} from '@faker-js/faker'
 
 const player = new Elysia({ prefix: "/player" })
-	.use(authJwt)
-	.get("/guest", async ({jwt, cookie: {auth}}) => {
+	.use(guestJwt)
+  //.use(memberJwt)
+	.get("/guest", async ({guestJwt, cookie: {guestAuth}}) => {
     const tempUsername = `guest_${faker.internet.username()}`
-    const guestToken = await jwt.sign({username: tempUsername})
+    const guestToken = await guestJwt.sign({username: tempUsername})
 
-     auth?.set({
+     guestAuth?.set({
       value: guestToken,
       httpOnly: true,
       path: '/'
