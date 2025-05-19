@@ -1,5 +1,11 @@
-<script setup lang="ts"></script>
+<template>
+	<component :is="currentPage" />
+</template>
 
-<template></template>
+<script setup lang="ts">
+	import { useRouter } from "./composables/useRouter";
+
+	const {currentPage} = useRouter();
+</script>
 
 <style scoped></style>

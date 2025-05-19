@@ -2,29 +2,33 @@ import { Elysia, t, status } from "elysia";
 import { guestJwt, memberJwt } from "../plugins/auth.plugin";
 
 const lobby = new Elysia({ prefix: "/lobby" })
-  .use(guestJwt)
-  .use(memberJwt)
-  .onBeforeHandle(async({guestJwt, memberJwt, cookie: {guestAuth, memberAuth}}) => {
-    if (guestAuth) {
-      const guestToken = await guestJwt.verify(guestAuth.value)
+	.use(guestJwt)
+	.use(memberJwt)
+	.onBeforeHandle(
+		async ({ guestJwt, memberJwt, cookie: { guestAuth, memberAuth } }) => {
+			if (guestAuth) {
+				const guestToken = await guestJwt.verify(guestAuth.value);
 
-      if (!guestToken) {
-        return status(401, 'Unauthorized')
-      }
+				if (!guestToken) {
+					return status(401, "Unauthorized");
+				}
 
-      //replace guest token
-      const newGuestToken = await guestJwt.sign({username: guestToken.username as string})
-      
-      guestAuth.set({
-        value: newGuestToken,
-        httpOnly: true,
-        path: '/'
-      })
-    }
-    
-    // if (memberAuth) {
-    // }
-  })
+				//replace guest token
+				const newGuestToken = await guestJwt.sign({
+					username: guestToken.username as string
+				});
+
+				guestAuth.set({
+					value: newGuestToken,
+					httpOnly: true,
+					path: "/"
+				});
+			}
+
+			// if (memberAuth) {
+			// }
+		}
+	)
 	.post("/create", "Create a lobby")
 	.post("/:id/join", "Join a lobby")
 	.post("/:id/leave", "Leave a lobby")
