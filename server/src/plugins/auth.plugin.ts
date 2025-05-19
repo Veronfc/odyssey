@@ -9,10 +9,10 @@ export const guestJwt = new Elysia({ name: "guestJwt" }).use(
 	})
 );
 
-export const memberJwt = new Elysia({name: 'memberJwt'}).use(
-  jwt({
+export const memberJwt = new Elysia({ name: "memberJwt" }).use(
+	jwt({
 		name: "memberJwt",
 		secret: Bun.env.JWT_SECRET || "SuperSecret",
 		exp: "24h"
 	})
-)
+);
