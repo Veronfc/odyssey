@@ -1,6 +1,9 @@
 <template>
   <div class="modal">
+    <!--TODO add button component-->
     <button @click="getToken">Play as Guest</button>
+    <button>Sign In</button>
+    <button>Sign Up</button>
     {{ username }}
   </div>
 </template>

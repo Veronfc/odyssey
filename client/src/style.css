@@ -23,5 +23,5 @@
 }
 
 .modal {
-  @apply border-2 rounded-2xl bg-neutral p-10 drop-shadow-[.25rem_.25rem_black];
+  @apply flex flex-col gap-4 border-2 rounded-2xl bg-neutral p-10 drop-shadow-[.25rem_.25rem_black];
 }
