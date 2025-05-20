@@ -14,7 +14,6 @@ const currentPath = ref(window.location.pathname);
 
 window.addEventListener("popstate", () => {
 	currentPath.value = window.location.pathname;
-  console.log(currentPath.value)
 });
 
 function navigateTo(path: string) {

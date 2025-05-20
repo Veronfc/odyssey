@@ -4,6 +4,7 @@ import { faker } from "@faker-js/faker";
 
 const player = new Elysia({ prefix: "/player" })
 	.use(guestJwt)
+  //TODO use memberJwt later when implementing user accounts
 	//.use(memberJwt)
 	.get(
 		"/guest",

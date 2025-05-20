@@ -13,7 +13,6 @@ const lobby = new Elysia({ prefix: "/lobby" })
 					return status(401, "Unauthorized");
 				}
 
-				//replace guest token
 				const newGuestToken = await guestJwt.sign({
 					username: guestToken.username as string
 				});
@@ -25,6 +24,7 @@ const lobby = new Elysia({ prefix: "/lobby" })
 				});
 			}
 
+      //TODO add check for memberAuth cookie jwt
 			// if (memberAuth) {
 			// }
 		}
