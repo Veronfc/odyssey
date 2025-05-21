@@ -19,9 +19,9 @@
 }
 
 .page {
-	@apply flex items-center justify-center from-grad-1 via-grad-2 to-grad-3 h-svh w-svw bg-linear-to-br;
+	@apply from-grad-1 via-grad-2 to-grad-3 flex h-svh w-svw items-center justify-center bg-linear-to-br;
 }
 
 .modal {
-  @apply flex flex-col gap-4 border-2 rounded-2xl bg-neutral p-10 drop-shadow-[.25rem_.25rem_black];
+	@apply bg-neutral flex flex-col gap-4 rounded-2xl border-2 p-10 drop-shadow-[.25rem_.25rem_black];
 }

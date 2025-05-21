@@ -1,30 +1,34 @@
 import { Elysia, status, t } from "elysia";
-import { guestJwt, memberJwt } from "../plugins/auth.plugin";
-import { faker } from "@faker-js/faker";
+import { jwtPlugin } from "../plugins/auth.plugin";
+import { createGuest } from "../services/player.service";
 
-const player = new Elysia({ prefix: "/player" })
-	.use(guestJwt)
-  //TODO use memberJwt later when implementing user accounts
-	//.use(memberJwt)
-	.get(
-		"/guest",
-		async ({ guestJwt, cookie: { guestAuth } }) => {
-			const tempUsername = `guest_${faker.internet.username()}`;
-			const guestToken = await guestJwt.sign({ username: tempUsername });
+const playerRoute = new Elysia({ prefix: "/player" }).use(jwtPlugin).get(
+	"/guest",
+	async ({ jwt, cookie: { auth } }) => {
+		const { id, username } = createGuest();
+		const guestToken = await jwt.sign({
+			id,
+			username,
+			role: "guest",
+			exp: 60 * 5
+		}); // TODO update exp when deploying
 
-			guestAuth?.set({
-				value: guestToken,
-				httpOnly: true,
-				path: "/"
-			});
+		auth?.set({
+			value: guestToken,
+			httpOnly: true,
+			path: "/"
+		});
 
-			return status(201, tempUsername);
-		},
-		{
-			response: {
-				201: t.String()
-			}
+		return status(201, { id: id, username: username });
+	},
+	{
+		response: {
+			201: t.Object({
+				id: t.String(),
+				username: t.String()
+			})
 		}
-	);
+	}
+);
 
-export { player };
+export { playerRoute };

@@ -1,35 +1,59 @@
 import { Elysia, t, status } from "elysia";
-import { guestJwt, memberJwt } from "../plugins/auth.plugin";
+import { jwtPlugin } from "../plugins/auth.plugin";
+import { CreateLobbyDto, CreateLobbyResponseDto } from "../models/lobby.dto";
+import { createLobby } from "../services/lobby.service";
 
-const lobby = new Elysia({ prefix: "/lobby" })
-	.use(guestJwt)
-	.use(memberJwt)
-	.onBeforeHandle(
-		async ({ guestJwt, memberJwt, cookie: { guestAuth, memberAuth } }) => {
-			if (guestAuth) {
-				const guestToken = await guestJwt.verify(guestAuth.value);
+const lobbyRoute = new Elysia({ prefix: "/lobby" })
+	.use(jwtPlugin)
+	.onBeforeHandle(async ({ jwt, cookie: { auth } }) => {
+		const token = await jwt.verify(auth?.value);
 
-				if (!guestToken) {
-					return status(401, "Unauthorized");
-				}
+		if (!token) {
+			return status(401, "Unauthorized");
+		}
+		// TODO move into standalone refresh method
+		let expiresIn = token.role === "guest" ? 60 * 5 : 60 * 60;
 
-				const newGuestToken = await guestJwt.sign({
-					username: guestToken.username as string
-				});
+		const newToken = await jwt.sign({
+			id: token.id as string,
+			username: token.username as string,
+			role: token.role as string,
+			exp: expiresIn
+		});
 
-				guestAuth.set({
-					value: newGuestToken,
-					httpOnly: true,
-					path: "/"
-				});
+		auth!.set({
+			value: newToken,
+			httpOnly: true,
+			path: "/"
+		});
+		//=====
+	})
+	.post(
+		"/create",
+		async ({ jwt, cookie: { auth }, body }) => {
+			// TODO update auth guards to return token
+			const token = await jwt.verify(auth!.value);
+
+			if (!token) return status(401, "Unauthorized");
+
+			const { code, message, lobby } = createLobby(
+				body.name,
+				token.id as string,
+				body.isPrivate,
+				body.password
+			);
+
+			if (code === 201) {
+				return status(201, lobby);
 			}
 
-      //TODO add check for memberAuth cookie jwt
-			// if (memberAuth) {
-			// }
+			return status(code, message);
+		},
+		{
+			body: CreateLobbyDto,
+			response: CreateLobbyResponseDto
 		}
 	)
-	.post("/create", "Create a lobby")
 	.post("/:id/join", "Join a lobby")
 	.post("/:id/leave", "Leave a lobby")
 	.get("/:id", "Lobby info")
@@ -39,4 +63,4 @@ const lobby = new Elysia({ prefix: "/lobby" })
 	.ws(":id", "Connect to lobby socket");
 //listen for player-joined, player-left, chat and match-started
 
-export { lobby };
+export { lobbyRoute };
