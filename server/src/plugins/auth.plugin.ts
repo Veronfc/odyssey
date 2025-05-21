@@ -1,18 +1,9 @@
 import { jwt } from "@elysiajs/jwt";
 import { Elysia } from "elysia";
 
-export const guestJwt = new Elysia({ name: "guestJwt" }).use(
+export const jwtPlugin = new Elysia({ name: "jwt" }).use(
 	jwt({
-		name: "guestJwt",
-		secret: Bun.env.JWT_SECRET || "SuperSecret",
-		exp: "2m"
-	})
-);
-
-export const memberJwt = new Elysia({ name: "memberJwt" }).use(
-	jwt({
-		name: "memberJwt",
-		secret: Bun.env.JWT_SECRET || "SuperSecret",
-		exp: "24h"
+		name: "jwt",
+		secret: Bun.env.JWT_SECRET || "SuperSecret"
 	})
 );

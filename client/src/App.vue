@@ -5,7 +5,7 @@
 <script setup lang="ts">
 	import { useRouter } from "./composables/useRouter";
 
-	const {currentPage} = useRouter();
+	const { currentPage } = useRouter();
 </script>
 
 <style scoped></style>
