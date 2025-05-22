@@ -12,12 +12,10 @@ type Player = {
 
 const players = new Map<UUIDTypes, Player>();
 
-const createGuest = () => {
-	const username = `guest_${faker.internet.username()}`;
-
+const createGuest = (username?: string, id?: string) => {
 	const guest: Player = {
-		id: uuid(),
-		username,
+		id: id || uuid(),
+		username: username || `guest_${faker.internet.username()}`,
 		isGuest: true,
 		inLobby: false,
 		inMatch: false
@@ -25,7 +23,15 @@ const createGuest = () => {
 
 	players.set(guest.id, guest);
 
-	return { id: guest.id, username: username };
+	return { id: guest.id, username: guest.username };
 };
 
-export { type Player, players, createGuest };
+const playerExists = (id: string) => {
+  return Boolean(players.get(id))
+}
+
+const fetchActivePlaters = () => {
+	return players.values().toArray();
+};
+
+export { type Player, players, createGuest, playerExists, fetchActivePlaters };
