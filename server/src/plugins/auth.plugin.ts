@@ -1,9 +1,13 @@
 import { jwt } from "@elysiajs/jwt";
-import { Elysia } from "elysia";
+import { Elysia, status } from "elysia";
 
-export const jwtPlugin = new Elysia({ name: "jwt" }).use(
+// TODO add token refresh
+
+const jwtPlugin = new Elysia({ name: "jwt" }).use(
 	jwt({
 		name: "jwt",
 		secret: Bun.env.JWT_SECRET || "SuperSecret"
 	})
 );
+
+export { jwtPlugin };

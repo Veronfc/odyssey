@@ -59,4 +59,8 @@ const createLobby = (
 	return { code: 201, lobby: newLobby };
 };
 
-export { lobbies, createLobby };
+const fetchActiveLobbies = () => {
+	return lobbies.values().toArray();
+};
+
+export { lobbies, createLobby, fetchActiveLobbies };

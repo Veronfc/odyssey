@@ -1,7 +1,11 @@
 <template>
-	<div>lobby page</div>
+	<div class="page">
+		<CreateLobby />
+	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import CreateLobby from "../components/CreateLobby.vue";
+</script>
 
 <style scoped></style>

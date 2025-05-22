@@ -6,7 +6,7 @@ import { lobbyRoute } from "./routes/lobby.route";
 import { matchRoute } from "./routes/match.route";
 
 const app = new Elysia()
-	.use(cors())
+	.use(cors({ credentials: true }))
 	.use(
 		swagger({
 			provider: "swagger-ui"
