@@ -1,24 +1,15 @@
-import { Elysia, t } from "elysia";
-import { swagger } from "@elysiajs/swagger";
-import { cors } from "@elysiajs/cors";
-import { playerRoute } from "./routes/player.route";
-import { lobbyRoute } from "./routes/lobby.route";
-import { matchRoute } from "./routes/match.route";
+import { Hono } from "hono";
+import playersRouter from "./routes/players.route";
+import lobbiesRoute from "./routes/lobbies.route";
 
-const app = new Elysia()
-	.use(cors({ credentials: true }))
-	.use(
-		swagger({
-			provider: "swagger-ui"
-		})
-	)
-	.use(playerRoute)
-	.use(lobbyRoute)
-	.use(matchRoute)
-	.listen(8080, () => {
-		console.info(
-			`Server started at http://localhost:8080 \nSwagger UI at http://localhost:8080/swagger`
-		);
-	});
+const app = new Hono()
+	.route("/player", playersRouter)
+  .route("/lobby", lobbiesRoute)
+	.get("/", (context) => context.json({ message: "Hello from Hono" }));
 
-export type App = typeof app;
+export default {
+	port: 8080,
+	fetch: app.fetch
+};
+
+export type AppType = typeof app;
