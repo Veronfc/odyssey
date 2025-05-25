@@ -9,7 +9,7 @@ import { Role } from "shared/types/player";
 
 const COOKIE_SECRET = Bun.env.COOKIE_SECRET || "CookieSuperSecret";
 
-const { createGuest, fetchPlayer } = usePlayers()
+const { createGuest, fetchPlayer } = usePlayers();
 
 export const authGuard = createMiddleware(async (context, next) => {
 	const token = await getSignedCookie(context, COOKIE_SECRET, "auth");
@@ -21,19 +21,19 @@ export const authGuard = createMiddleware(async (context, next) => {
 	const { payload, message, code } = await verifyToken(token);
 
 	if (code !== 200) {
-    throw new HTTPException(code as ContentfulStatusCode, { message });
+		throw new HTTPException(code as ContentfulStatusCode, { message });
 	}
 
-  if (!fetchPlayer(payload!.id as string)) {
-    if (payload!.role === Role.Guest) {
-      createGuest(payload!.id, payload!.username)
-    } 
+	if (!fetchPlayer(payload!.id as string)) {
+		if (payload!.role === Role.Guest) {
+			createGuest(payload!.id, payload!.username);
+		}
 
-    if (payload!.role === Role.Member) {
-      // TODO add createMember method to usePlayer
-    }
-  }
-  
+		if (payload!.role === Role.Member) {
+			// TODO add createMember method to usePlayer
+		}
+	}
+
 	context.set("token", payload as Token);
 
 	await next();

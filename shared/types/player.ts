@@ -4,7 +4,7 @@ export type Player = {
 	role: Role;
 	inLobby: boolean;
 	inMatch: boolean;
-  timeout: ReturnType<typeof setTimeout>
+	//TODO timeout: ReturnType<typeof setTimeout>
 };
 
 export enum Role {

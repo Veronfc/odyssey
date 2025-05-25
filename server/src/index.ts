@@ -4,7 +4,7 @@ import lobbiesRoute from "./routes/lobbies.route";
 
 const app = new Hono()
 	.route("/player", playersRouter)
-  .route("/lobby", lobbiesRoute)
+	.route("/lobby", lobbiesRoute)
 	.get("/", (context) => context.json({ message: "Hello from Hono" }));
 
 export default {

@@ -13,10 +13,10 @@ export const usePlayers = () => {
 			username: guestUsername,
 			role: Role.Guest,
 			inLobby: false,
-			inMatch: false,
-      timeout: setTimeout(() => {
-        removePlayer(guestId)
-      }, 1000 * 60 * 10)
+			inMatch: false
+			// TODO timeout: setTimeout(() => {
+			//   removePlayer(guestId)
+			// }, 1000 * 60 * 10)
 		};
 
 		players.set(guestId, guest);
@@ -24,17 +24,27 @@ export const usePlayers = () => {
 		return { guestId, guestUsername };
 	};
 
-  const fetchPlayer = (id: string) => {
-    return players.get(id)
-  }
-  
-  const fetchAllPlayers = () => {
-    return players.values().toArray()
-  }
+	const fetchPlayer = (id: string) => {
+		return players.get(id);
+	};
 
-  const removePlayer = (id: string) => {
-    players.delete(id)
-  }
+	const fetchAllPlayers = () => {
+		return players.values().toArray();
+	};
 
-	return { createGuest, fetchPlayer, fetchAllPlayers, removePlayer };
+	const updatePlayer = (player: Player) => {
+		players.set(player.id, player);
+	};
+
+	const removePlayer = (id: string) => {
+		players.delete(id);
+	};
+
+	return {
+		createGuest,
+		fetchPlayer,
+		fetchAllPlayers,
+		updatePlayer,
+		removePlayer
+	};
 };
