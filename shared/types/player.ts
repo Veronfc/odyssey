@@ -8,6 +8,6 @@ export type Player = {
 };
 
 export enum Role {
-	Guest = "guest",
-	Member = "member"
+	GUEST = "guest",
+	MEMBER = "member"
 }

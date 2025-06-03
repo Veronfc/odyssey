@@ -52,7 +52,7 @@ Odyssey is a turn-based card game where 2–4 players compete in real-time. It f
 
 ### 🧠 Milestone 3: Core Server Logic
 - [x] `usePlayers()` composable to track active players
-- [ ] `useLobbies()` to manage lobby creation, joining, and timeouts
+- [x] `useLobbies()` to manage lobby creation, joining, and timeouts
 - [ ] `useMatches()` for in-memory match lifecycle
 
 ### 🌐 Milestone 4: WebSocket Infrastructure

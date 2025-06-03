@@ -11,7 +11,7 @@ export const usePlayers = () => {
 		const guest: Player = {
 			id: guestId,
 			username: guestUsername,
-			role: Role.Guest,
+			role: Role.GUEST,
 			inLobby: false,
 			inMatch: false
 			// TODO timeout: setTimeout(() => {

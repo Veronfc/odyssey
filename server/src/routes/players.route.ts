@@ -35,7 +35,7 @@ const playersRouter = new Hono()
 
 		const { guestId, guestUsername } = createGuest();
 
-		const token = await signToken(guestId, guestUsername, Role.Guest);
+		const token = await signToken(guestId, guestUsername, Role.GUEST);
 
 		await setSignedCookie(context, "auth", token, COOKIE_SECRET, {
 			httpOnly: true,
