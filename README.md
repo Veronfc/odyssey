@@ -1,22 +1,23 @@
-# 🃏 Odyssey
+⏸️ On Hold
 
+# 🃏 Odyssey
 **Odyssey** is a real-time multiplayer card game built with a modern monorepo architecture. It emphasizes responsive gameplay, type-safe communication, and cleanly separated concerns between server and client.
+<br/><br/>
 
 ## 🎯 Description
-
 Odyssey is a turn-based card game where 2–4 players compete in real-time. It features a guest-first authentication flow, in-memory matchmaking and game state, and WebSocket-based communication for fast, responsive gameplay.
+<br/><br/>
 
 ## 🚀 Planned Features
-
 - Real-time multiplayer gameplay (WebSockets over Hono)
 - Matchmaking with in-memory queues and lobby limits
 - Game sessions with composable-style server-side state
 - Guest-first JWT-based authentication
 - End-to-end type safety via shared types
 - Optional future: persistent user accounts, match history, and leaderboards
+<br/>
 
 ## 🛠️ Tech Stack
-
 ### Backend
 - [Bun](https://bun.sh/) — JavaScript runtime
 - [Hono](https://hono.dev/) — Lightweight web framework
@@ -38,9 +39,9 @@ Odyssey is a turn-based card game where 2–4 players compete in real-time. It f
 - Account migration (guest → user)
 - Spectator mode & replays
 - In-game chat / reactions
+<br/><br/>
 
 ## 🧱 Project Milestones
-
 ### ✅ Milestone 1: Monorepo & Base Server Setup
 - [x] Monorepo initialized with Bun
 - [x] Shared `@shared/types` package
